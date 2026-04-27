@@ -29,15 +29,16 @@ export const SavedArticlesProvider = ({ children }) => {
       const res = await fetch(`${BASE_URL}/articles/saved/${userEmail}`);
       if (res.ok) {
         const data = await res.json();
-        // Chuyển mảng object bài viết thành mảng ID chuỗi để so sánh Duy nhé
         if (Array.isArray(data)) {
           setSavedArticleIds(data.map(art => String(art.id)));
         } else {
           setSavedArticleIds([]);
         }
+      } else {
+        console.error(`❌ Server trả về lỗi ${res.status} khi lấy bài đã lưu`);
       }
     } catch (error) {
-      console.error("❌ Lỗi đồng bộ bài đã lưu:", error);
+      console.error("❌ Lỗi mạng khi đồng bộ bài đã lưu:", error);
     }
   };
 

@@ -17,8 +17,18 @@ export async function login(email, password) {
     body: JSON.stringify({ email, password }),
   });
 
+  if (!res.ok) {
+    let errorMsg = "Đăng nhập thất bại";
+    try {
+      const errorData = await res.json();
+      errorMsg = errorData.message || errorMsg;
+    } catch (e) {
+      errorMsg = `Lỗi hệ thống (${res.status})`;
+    }
+    throw new Error(errorMsg);
+  }
+
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || "Đăng nhập thất bại");
 
   // ✅ FIX: Lưu cả token và thông tin user để đồng bộ giao diện Duy nhé
   if (data.token) {
@@ -41,8 +51,18 @@ export async function register(fullname, email, password) {
     body: JSON.stringify({ fullname, email, password }),
   });
 
+  if (!res.ok) {
+    let errorMsg = "Đăng ký thất bại";
+    try {
+      const errorData = await res.json();
+      errorMsg = errorData.message || errorMsg;
+    } catch (e) {
+      errorMsg = `Lỗi hệ thống (${res.status})`;
+    }
+    throw new Error(errorMsg);
+  }
+
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || "Đăng ký thất bại");
 
   return data;
 }
