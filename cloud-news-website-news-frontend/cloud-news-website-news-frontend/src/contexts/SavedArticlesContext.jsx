@@ -22,7 +22,11 @@ export const SavedArticlesProvider = ({ children }) => {
       if (res.ok) {
         const data = await res.json();
         // Chuyển mảng object bài viết thành mảng ID chuỗi để so sánh Duy nhé
-        setSavedArticleIds(data.map(art => String(art.id)));
+        if (Array.isArray(data)) {
+          setSavedArticleIds(data.map(art => String(art.id)));
+        } else {
+          setSavedArticleIds([]);
+        }
       }
     } catch (error) {
       console.error("❌ Lỗi đồng bộ bài đã lưu:", error);

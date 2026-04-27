@@ -22,7 +22,7 @@ export const getAllArticles = async (category = "Tất cả", search = "", page 
  */
 export const getTopArticles = async () => {
   const res = await api.get("/top-articles");
-  return res.data;
+  return Array.isArray(res.data) ? res.data : [];
 };
 
 /**
