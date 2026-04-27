@@ -446,13 +446,16 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-app.get('*', (req, res) => {
-  if (!req.path.startsWith('/api')) {
+// Catch-all cho React Router
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
     if (fs.existsSync(path.join(frontendPath, 'index.html'))) {
       res.sendFile(path.join(frontendPath, 'index.html'));
     } else {
       res.status(404).send("Giao diện chưa được biên dịch thành công Duy ơi!");
     }
+  } else {
+    next();
   }
 });
 
