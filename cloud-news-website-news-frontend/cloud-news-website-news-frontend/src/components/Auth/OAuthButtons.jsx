@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 // ✅ Đã gỡ facebookProvider để không bị lỗi import Duy nhé
 import { auth, googleProvider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
+import { BASE_URL } from "../../utils/apiConfig";
 
 export default function OAuthButtons() {
   const [loading, setLoading] = useState(false);
@@ -35,13 +36,14 @@ export default function OAuthButtons() {
   // ✅ Logic đã rút gọn chỉ còn cho Google Duy nhé
   const handleGoogleLogin = async () => {
     setLoading(true);
+
     try {
       // 1. Mở Popup xác thực Google
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
       // 2. Gửi thông tin về Backend
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/auth/social-login`, {
+      const res = await fetch(`${BASE_URL}/auth/social-login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
