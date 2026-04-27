@@ -5,6 +5,7 @@ const cors = require('cors');
 const Parser = require('rss-parser');
 const mongoose = require('mongoose');
 const { Pool } = require('pg');
+const path = require('path');
 
 const app = express();
 const parser = new Parser();
@@ -419,6 +420,16 @@ app.delete('/api/admin/users/:email', async (req, res) => {
     await User.findOneAndDelete({ email: req.params.email });
     res.json({ message: "Đã tiễn người dùng này lên đường!" });
   } catch (err) { res.status(500).json({ message: "Lỗi xóa user!" }); }
+});
+
+// --- 7. PHỤC VỤ GIAO DIỆN (FRONTEND) ---
+const frontendPath = path.join(__dirname, 'dist');
+app.use(express.static(frontendPath));
+
+app.get('*', (req, res) => {
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(frontendPath, 'index.html'));
+  }
 });
 
 const PORT = process.env.PORT || 5000;

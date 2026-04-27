@@ -23,12 +23,18 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: npm install, build, and test
+      - name: Build Frontend (Vite)
+        run: |
+          cd cloud-news-website-news-frontend/cloud-news-website-news-frontend
+          npm install
+          npm run build
+          # Di chuyển thư mục dist vào trong thư mục backend để server.js có thể nhận diện
+          mv dist ../press-backend/dist
+
+      - name: Install Backend dependencies
         run: |
           cd cloud-news-website-news-frontend/press-backend
           npm install
-          npm run build --if-present
-          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
