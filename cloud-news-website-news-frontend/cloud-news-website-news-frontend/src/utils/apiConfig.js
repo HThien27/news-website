@@ -5,14 +5,18 @@
  * Giúp tự động thêm /api và xử lý dấu gạch chéo thừa
  */
 export const getBaseURL = () => {
+  // Nếu đang chạy trên môi trường thật (Azure), giao diện và backend chung 1 nhà
+  // nên chỉ cần gọi /api là trình duyệt tự hiểu
+  if (import.meta.env.PROD) {
+    return '/api';
+  }
+
   let url = import.meta.env.VITE_API_URL || "http://localhost:5000";
   
-  // Xóa dấu / ở cuối nếu có
   if (url.endsWith("/")) {
     url = url.slice(0, -1);
   }
   
-  // Tự động thêm /api nếu chưa có
   if (!url.endsWith("/api")) {
     url += "/api";
   }
