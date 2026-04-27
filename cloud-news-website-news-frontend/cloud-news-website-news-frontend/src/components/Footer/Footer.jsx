@@ -29,6 +29,9 @@ export default function Footer() {
       </div>
       <div className="footer__bottom">
         <span>© 2026 Diễn Đàn Press. Editorial Precision System.</span>
+        <div style={{ fontSize: '10px', color: '#888', marginTop: '5px', opacity: 0.6 }}>
+          API: {import.meta.env.VITE_API_URL || "Chưa có biến VITE_API_URL"}
+        </div>
       </div>
     </footer>
   );
