@@ -11,6 +11,14 @@ export const SavedArticlesProvider = ({ children }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const userEmail = user?.email;
 
+  const getBaseURL = () => {
+    let url = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    if (url.endsWith("/")) url = url.slice(0, -1);
+    if (!url.endsWith("/api")) url += "/api";
+    return url;
+  };
+  const BASE_URL = getBaseURL();
+
   // ✅ HÀM MỚI: Lấy danh sách ID đã lưu từ PostgreSQL về để hiển thị icon đỏ Duy nhé
   const fetchSavedIds = async () => {
     if (!userEmail) {
@@ -18,7 +26,7 @@ export const SavedArticlesProvider = ({ children }) => {
       return;
     }
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/articles/saved/${userEmail}`);
+      const res = await fetch(`${BASE_URL}/articles/saved/${userEmail}`);
       if (res.ok) {
         const data = await res.json();
         // Chuyển mảng object bài viết thành mảng ID chuỗi để so sánh Duy nhé
@@ -48,7 +56,7 @@ export const SavedArticlesProvider = ({ children }) => {
 
       if (userEmail) {
         try {
-          await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/articles/save`, {
+          await fetch(`${BASE_URL}/articles/save`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ article, userEmail }),
@@ -69,7 +77,7 @@ export const SavedArticlesProvider = ({ children }) => {
 
     if (userEmail) {
       try {
-        await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/articles/save/${stringId}/${userEmail}`, {
+        await fetch(`${BASE_URL}/articles/save/${stringId}/${userEmail}`, {
           method: "DELETE",
         });
       } catch (error) {

@@ -1,9 +1,15 @@
 // src/services/api.js
 import axios from 'axios';
 
+const getBaseURL = () => {
+  let url = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  if (url.endsWith('/')) url = url.slice(0, -1);
+  if (!url.endsWith('/api')) url += '/api';
+  return url;
+};
+
 const api = axios.create({
-  // Sửa 8000 thành 5000 ở đây Duy nhé
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: getBaseURL(),
   timeout: 10000,
 });
 
