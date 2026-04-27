@@ -28,8 +28,11 @@ jobs:
           cd cloud-news-website-news-frontend/cloud-news-website-news-frontend
           npm install
           npm run build
-          # Di chuyển thư mục dist vào trong thư mục backend để server.js có thể nhận diện
-          mv dist ../press-backend/dist
+          # Copy thư mục dist vào trong thư mục backend
+          cp -r dist ../press-backend/dist
+
+      - name: Verify dist folder
+        run: ls -R cloud-news-website-news-frontend/press-backend/dist
 
       - name: Install Backend dependencies
         run: |

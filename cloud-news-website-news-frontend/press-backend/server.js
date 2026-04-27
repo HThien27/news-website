@@ -424,11 +424,31 @@ app.delete('/api/admin/users/:email', async (req, res) => {
 
 // --- 7. PHỤC VỤ GIAO DIỆN (FRONTEND) ---
 const frontendPath = path.join(__dirname, 'dist');
-app.use(express.static(frontendPath));
+const fs = require('fs');
+
+if (fs.existsSync(frontendPath)) {
+  console.log('✅ Thư mục giao diện (dist) đã sẵn sàng');
+  app.use(express.static(frontendPath));
+} else {
+  console.error('❌ CẢNH BÁO: Không tìm thấy thư mục dist tại:', frontendPath);
+}
+
+// Kiểm tra sức khỏe hệ thống
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: "ok", 
+    message: "Backend đã sống Duy ơi!",
+    frontend: fs.existsSync(frontendPath) ? "Sẵn sàng" : "Thiếu thư mục dist"
+  });
+});
 
 app.get('*', (req, res) => {
   if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(frontendPath, 'index.html'));
+    if (fs.existsSync(path.join(frontendPath, 'index.html'))) {
+      res.sendFile(path.join(frontendPath, 'index.html'));
+    } else {
+      res.status(404).send("Giao diện chưa được biên dịch thành công Duy ơi!");
+    }
   }
 });
 
