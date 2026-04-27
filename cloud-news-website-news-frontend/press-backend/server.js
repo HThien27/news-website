@@ -8,7 +8,11 @@ const { Pool } = require('pg');
 const path = require('path');
 
 const app = express();
-const parser = new Parser();
+const parser = new Parser({
+  headers: {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+  }
+});
 
 // --- 1. KẾT NỐI DATABASE ---
 
