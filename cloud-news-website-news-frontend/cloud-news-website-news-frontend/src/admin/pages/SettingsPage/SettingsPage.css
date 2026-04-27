@@ -1,0 +1,119 @@
+/* ============================================================
+   SettingsPage.css — Minimal & Dark Mode Ready
+   ============================================================ */
+
+.settings-page {
+  padding: 60px 20px;
+  max-width: 860px;
+  margin: 0 auto;
+  min-height: 100vh;
+  /* Sử dụng biến màu hệ thống Duy nhé */
+  background-color: var(--bg); 
+  color: var(--text);
+  transition: all 0.3s ease;
+}
+
+/* ---- Page Header ---- */
+.settings-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.settings-title {
+  font-family: var(--heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-h);
+  margin: 0 0 12px;
+}
+
+.settings-subtitle {
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ---- Section & Card ---- */
+.settings-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.theme-card {
+  background-color: var(--code-bg); /* Màu nền card tự đổi Duy nhé */
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* ---- Toggle Switch Duy yêu cầu ---- */
+.toggle-switch {
+  position: relative;
+  width: 70px;
+  height: 36px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+/* Màu khi bật/tắt Duy nhé */
+.toggle-switch.on {
+  background-color: var(--accent);
+}
+
+.toggle-switch.off {
+  background-color: #cbd5e1;
+}
+
+.toggle-knob {
+  width: 28px;
+  height: 28px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Hiệu ứng trượt nút Duy nhé */
+.toggle-switch.on .toggle-knob {
+  transform: translateX(32px);
+}
+
+.toggle-switch.off .toggle-knob {
+  transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 40px 15px;
+  }
+  .settings-title {
+    font-size: 1.8rem;
+  }
+}
