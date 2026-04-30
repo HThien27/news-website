@@ -20,7 +20,7 @@ export default function LoginForm({ onSuccess }) {
     background: "#fff",
     outline: "none",
     boxSizing: "border-box",
-    fontFamily: "'Be Vietnam Pro', sans-serif",
+    fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif",
     transition: "border-color .18s, box-shadow .18s",
     boxShadow: focused ? (hasError ? "0 0 0 3px rgba(239,68,68,0.1)" : "0 0 0 3px rgba(37,99,235,0.1)") : "none",
   });
@@ -185,7 +185,7 @@ export default function LoginForm({ onSuccess }) {
           fontSize: 15, 
           fontWeight: 700, 
           cursor: loading ? "not-allowed" : "pointer",
-          fontFamily: "'Be Vietnam Pro', sans-serif",
+          fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif",
           transition: "all .2s",
           boxShadow: loading ? "0 2px 8px rgba(37,99,235,0.2)" : "0 4px 15px rgba(37,99,235,0.35)",
           letterSpacing: "0.2px",

@@ -160,20 +160,55 @@
 
 .navbar__auth-btn {
   width: auto;
-  height: auto;
-  border-radius: 4px;
-  padding: 6px 14px;
+  height: 36px;
+  border-radius: 8px;
+  padding: 0 18px;
   font-family: "Source Sans 3", "Helvetica Neue", sans-serif;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: #c0392b;
-  background: #fff;
-  border: 1px solid #c0392b;
-  transition: all 0.15s;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
-.navbar__auth-btn:hover {
-  background: #c0392b;
+
+.navbar__auth-btn.login {
   color: #fff;
+  background: linear-gradient(135deg, #c0392b 0%, #a03022 100%);
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.3);
+}
+
+.navbar__auth-btn.login:hover {
+  background: linear-gradient(135deg, #d63031 0%, #c0392b 100%);
+  box-shadow: 0 6px 20px rgba(192, 57, 43, 0.4);
+  transform: translateY(-2px);
+}
+
+.navbar__auth-btn.login:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(192, 57, 43, 0.3);
+}
+
+.navbar__auth-btn.logout {
+  color: #c0392b;
+  background: #fff1f1;
+  border: 1.5px solid #fecaca;
+}
+
+.navbar__auth-btn.logout:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.15);
+}
+
+.navbar__auth-btn.logout:active {
+  transform: translateY(0);
 }
 
 .navbar__hamburger {

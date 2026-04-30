@@ -28,9 +28,10 @@ export default function ArticleDetail() {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/articles/${id}/comments`);
       const data = await res.json();
-      setDynamicComments(data);
+      setDynamicComments(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Lỗi lấy bình luận từ Database Duy ơi:", err);
+      setDynamicComments([]);
     }
   };
 
@@ -133,7 +134,7 @@ export default function ArticleDetail() {
             <h1 className="ad-title" style={{ textDecoration: 'none' }}>{article.title}</h1>
             <p className="ad-subtitle">{article.subtitle || article.excerpt}</p>
 
-            <div className="ad-share" style={{ display: 'flex', gap: '15px', alignItems: 'center', marginBottom: '25px' }}>
+            <div className="ad-share">
               <button className="ad-share-btn" title="Chia sẻ" onClick={handleShare}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
               </button>
@@ -142,10 +143,10 @@ export default function ArticleDetail() {
                 className={`ad-share-btn ${isSaved ? "ad-share-btn--saved" : ""}`} 
                 title={isSaved ? "Bỏ lưu" : "Lưu bài"} 
                 onClick={handleSave}
-                style={{ color: isSaved ? '#00e5ff' : '#64748b', transition: 'all 0.3s ease' }}
+                style={{ color: isSaved ? '#16a34a' : '#64748b', transition: 'all 0.3s ease' }}
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill={isSaved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
-                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2-2h3"/>
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                 </svg>
               </button>
 

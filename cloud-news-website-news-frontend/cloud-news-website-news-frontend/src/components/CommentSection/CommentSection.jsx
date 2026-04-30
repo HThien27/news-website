@@ -17,7 +17,7 @@ export default function CommentSection({ comments = [], onCommentSubmit, fetchCo
   const [localComments, setLocalComments] = useState([]);
 
   useEffect(() => {
-    setLocalComments(comments || []);
+    setLocalComments(Array.isArray(comments) ? comments : []);
   }, [comments]);
 
   const currentUser = JSON.parse(localStorage.getItem("user") || "{}");

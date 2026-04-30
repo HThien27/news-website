@@ -6,13 +6,13 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ width: "100%", maxWidth: 520, minHeight: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <div style={{ width: "100%", maxWidth: 520, minHeight: "100%", display: "flex", flexDirection: "column", justifyContent: "center", fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif" }}>
       {/* Header */}
       <div style={{ textAlign: "center", marginBottom: 36 }}>
-        <h2 style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "0 0 10px", letterSpacing: "-0.5px" }}>
+        <h2 style={{ fontSize: 28, fontWeight: 800, color: "#0f172a", margin: "0 0 10px", letterSpacing: "-0.5px", fontFamily: "'Playfair Display', system-ui, 'Segoe UI', Roboto, sans-serif" }}>
           Tạo tài khoản mới
         </h2>
-        <p style={{ fontSize: 15, color: "#64748b", margin: 0, lineHeight: 1.5 }}>
+        <p style={{ fontSize: 15, color: "#64748b", margin: 0, lineHeight: 1.5, fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif" }}>
           Tham gia cộng đồng độc giả Diễn Đàn Press
         </p>
       </div>
@@ -41,9 +41,9 @@ export default function RegisterPage() {
       </div>
 
       {/* Footer */}
-      <p style={{ textAlign: "center", marginTop: 28, fontSize: 14, color: "#64748b" }}>
+      <p style={{ textAlign: "center", marginTop: 28, fontSize: 14, color: "#64748b", fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif" }}>
         Đã có tài khoản?{" "}
-        <a href="/login" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "none", transition: "color .2s" }} onMouseEnter={e => e.target.style.color = "#1d4ed8"} onMouseLeave={e => e.target.style.color = "#2563eb"}>
+        <a href="/login" style={{ color: "#2563eb", fontWeight: 700, textDecoration: "none", transition: "color .2s", fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif" }} onMouseEnter={e => e.target.style.color = "#1d4ed8"} onMouseLeave={e => e.target.style.color = "#2563eb"}>
           Đăng nhập
         </a>
       </p>
