@@ -82,7 +82,7 @@ export default function RegisterForm({ onSuccess }) {
     background: "#fff",
     outline: "none",
     boxSizing: "border-box",
-    fontFamily: "'Be Vietnam Pro', sans-serif",
+    fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif",
     transition: "border-color .18s, box-shadow .18s",
     boxShadow: focused[name] ? (hasError ? "0 0 0 3px rgba(239,68,68,0.1)" : "0 0 0 3px rgba(37,99,235,0.1)") : "none",
   });

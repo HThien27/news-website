@@ -131,7 +131,12 @@ export default function Navbar({ onCategoryChange, onSearch, currentCategory }) 
             </>
           )}
 
-          <button className="navbar__icon-btn" onClick={handleAuthClick} style={{ padding: '6px 12px', height: '36px', fontSize: '13px', fontWeight: '600', borderRadius: '8px', border: isLoggedIn ? '1px solid #fee2e2' : '1px solid #e2e8f0', background: isLoggedIn ? '#fff1f1' : '#fff', color: isLoggedIn ? '#dc2626' : '#2563eb' }}>{isLoggedIn ? "Thoát" : "Login"}</button>
+          <button 
+            className={`navbar__auth-btn ${isLoggedIn ? 'logout' : 'login'}`} 
+            onClick={handleAuthClick}
+          >
+            {isLoggedIn ? "Thoát" : "Login"}
+          </button>
           <button className="navbar__hamburger" onClick={() => setMenuOpen(!menuOpen)}><span /><span /><span /></button>
         </div>
       </div>

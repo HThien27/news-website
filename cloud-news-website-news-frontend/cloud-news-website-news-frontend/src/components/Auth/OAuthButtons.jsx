@@ -23,7 +23,7 @@ export default function OAuthButtons() {
     fontSize: 14,
     fontWeight: 600,
     color: "#1e293b",
-    fontFamily: "'Be Vietnam Pro', sans-serif",
+    fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif",
     transition: "all .18s ease",
   };
 

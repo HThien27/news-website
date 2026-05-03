@@ -89,11 +89,10 @@
 /* Share buttons column */
 .ad-share {
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: -48px;
-  top: 0;
-  gap: 8px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
 }
 
 .ad-main {
@@ -101,35 +100,40 @@
 }
 
 .ad-share-btn {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1.5px solid #e0e0e0;
+  border: 2px solid #e0e0e0;
   background: #fff;
-  color: #555;
+  color: #64748b;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
 
 .ad-share-btn:hover {
   border-color: #e8232a;
   color: #e8232a;
-  transform: scale(1.08);
+  background: #fff5f5;
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 35, 42, 0.15);
 }
 
 .ad-share-btn--saved {
   border-color: #16a34a;
   color: #16a34a;
   background: #dcfce7;
-  animation: pulse-green 0.6s ease;
 }
 
 .ad-share-btn--saved:hover {
   border-color: #15803d;
   color: #15803d;
+  background: #ccf2d8;
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2);
 }
 
 @keyframes pulse-green {
@@ -297,6 +301,15 @@
 
   .ad-container {
     padding: 0 16px;
+  }
+
+  .ad-share {
+    justify-content: flex-start;
+  }
+
+  .ad-share-btn {
+    width: 36px;
+    height: 36px;
   }
 
   .ad-image-grid {

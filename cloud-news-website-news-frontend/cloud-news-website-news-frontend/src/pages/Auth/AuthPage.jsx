@@ -14,7 +14,7 @@ export default function AuthPage({ mode = "login" }) {
   }, []);
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh", fontFamily: "'Be Vietnam Pro', sans-serif", flexDirection: isMobile ? "column" : "row" }}>
+    <div style={{ display: "flex", minHeight: "100vh", fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif", flexDirection: isMobile ? "column" : "row" }}>
       {/* ── CỘT TRÁI ── */}
       <div style={{
         flex: isMobile ? "0 0 auto" : "0 0 50%",
@@ -66,18 +66,18 @@ export default function AuthPage({ mode = "login" }) {
         }}>
           <div style={{
             fontSize: 13, letterSpacing: 3, textTransform: "uppercase",
-            color: "#94a3b8", marginBottom: 28, fontWeight: 600,
+            color: "#94a3b8", marginBottom: 28, fontWeight: 600, fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif"
           }}>Editorial News</div>
           
           <h1 style={{
             fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.5,
-            margin: "0 0 24px", letterSpacing: "-0.8px", color: "#0f172a",
+            margin: "0 0 24px", letterSpacing: "-0.8px", color: "#0f172a", fontFamily: "'Playfair Display', system-ui, 'Segoe UI', Roboto, sans-serif"
           }}>
             Trí tuệ biên tập,<br />
             <span style={{ color: "#2563eb" }}>Tầm nhìn thời đại.</span>
           </h1>
           
-          <p style={{ fontSize: 15, color: "#64748b", lineHeight: 1.8, margin: "0 0 44px", fontWeight: 500 }}>
+          <p style={{ fontSize: 15, color: "#64748b", lineHeight: 1.8, margin: "0 0 44px", fontWeight: 500, fontFamily: "'DM Sans', system-ui, 'Segoe UI', Roboto, sans-serif" }}>
             Tham gia cộng đồng Diễn Đàn Press để cập nhật<br />
             những phân tích sâu sắc và thông tin uy tín<br />
             từ các chuyên gia hàng đầu.
