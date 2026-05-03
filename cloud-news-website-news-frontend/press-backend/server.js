@@ -30,8 +30,8 @@ const userSchema = new mongoose.Schema({
   role: { type: String, default: "Subscriber" },
   status: { type: String, default: "Ngoại tuyến" },
   // ✅ CẬP NHẬT: Thêm để hỗ trợ xác thực Google/Facebook Duy nhé
-  provider: { type: String, default: "local" }, 
-  socialId: { type: String } 
+  provider: { type: String, default: "local" },
+  socialId: { type: String }
 });
 const User = mongoose.model('User', userSchema);
 
@@ -39,8 +39,8 @@ const User = mongoose.model('User', userSchema);
 const pool = new Pool({
   user: process.env.PG_USER || 'postgres',
   host: process.env.PG_HOST || 'localhost',
-  database: process.env.PG_DATABASE || 'press_news_db', 
-  password: process.env.PG_PASSWORD || '123456', 
+  database: process.env.PG_DATABASE || 'press_news_db',
+  password: process.env.PG_PASSWORD || '123456',
   port: process.env.PG_PORT || 5432,
   ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
@@ -50,6 +50,49 @@ pool.query('SELECT NOW()', (err, res) => {
     console.error('❌ Lỗi PostgreSQL Duy ơi!', err.message);
   } else {
     console.log('✅ PostgreSQL: Đã kết nối press_news_db thành công');
+    // Tự động tạo bảng nếu chưa có
+    pool.query(`
+      CREATE TABLE IF NOT EXISTS saved_articles (
+        id SERIAL PRIMARY KEY,
+        article_id VARCHAR(255),
+        user_email VARCHAR(255),
+        title TEXT,
+        excerpt TEXT,
+        image TEXT,
+        category VARCHAR(100),
+        author_name VARCHAR(255),
+        created_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(article_id, user_email)
+      );
+      CREATE TABLE IF NOT EXISTS comments (
+        id SERIAL PRIMARY KEY,
+        article_id VARCHAR(255),
+        user_email VARCHAR(255),
+        user_name VARCHAR(255),
+        user_avatar TEXT,
+        content TEXT,
+        parent_id INTEGER,
+        likes INTEGER DEFAULT 0,
+        is_reported BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+      CREATE TABLE IF NOT EXISTS comment_likes (
+        id SERIAL PRIMARY KEY,
+        comment_id INTEGER,
+        user_email VARCHAR(255),
+        UNIQUE(comment_id, user_email)
+      );
+      CREATE TABLE IF NOT EXISTS notifications (
+        id SERIAL PRIMARY KEY,
+        receiver_email VARCHAR(255),
+        actor_name VARCHAR(255),
+        type VARCHAR(100),
+        content TEXT,
+        is_read BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT NOW()
+      );
+    `).then(() => console.log('✅ Các bảng PostgreSQL đã sẵn sàng'))
+      .catch(e => console.error('❌ Lỗi tạo bảng:', e.message));
   }
 });
 
@@ -80,7 +123,7 @@ app.post('/api/auth/register', async (req, res) => {
   try {
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ message: "Email đã tồn tại Duy ơi!" });
-    
+
     const newUser = new User({
       fullname, email, password,
       avatar: "https://i.pravatar.cc/150?u=" + email,
@@ -141,7 +184,7 @@ app.post('/api/auth/logout', async (req, res) => {
 
 app.get('/api/auth/me', async (req, res) => {
   try {
-    const user = await User.findOne().sort({ _id: -1 }); 
+    const user = await User.findOne().sort({ _id: -1 });
     res.json(user);
   } catch (err) { res.status(500).json({ message: "Lỗi!" }); }
 });
@@ -193,9 +236,9 @@ app.get('/api/articles', async (req, res) => {
     }));
     if (q) articles = articles.filter(a => a.title.toLowerCase().includes(q.toLowerCase()));
     res.json(articles);
-  } catch (error) { 
+  } catch (error) {
     console.error("Lỗi RSS:", error);
-    res.json([]); 
+    res.json([]);
   }
 });
 
@@ -232,7 +275,7 @@ app.post('/api/articles/save', async (req, res) => {
 app.get('/api/articles/saved/:email', async (req, res) => {
   try {
     const result = await pool.query(
-      'SELECT * FROM saved_articles WHERE user_email = $1 ORDER BY created_at DESC', 
+      'SELECT * FROM saved_articles WHERE user_email = $1 ORDER BY created_at DESC',
       [req.params.email]
     );
     const mapped = result.rows.map(row => ({
@@ -240,7 +283,10 @@ app.get('/api/articles/saved/:email', async (req, res) => {
       author: { name: row.author_name, avatar: "/VnExpress-logo-1.png" }
     }));
     res.json(mapped);
-  } catch (error) { res.status(500).json({ message: "Lỗi lịch sử!" }); }
+  } catch (error) {
+    console.error("❌ Lỗi saved_articles:", error.message, error.stack);
+    res.status(500).json({ message: "Lỗi lịch sử!", detail: error.message });
+  }
 });
 
 app.delete('/api/articles/save/:articleId/:email', async (req, res) => {
@@ -321,11 +367,14 @@ app.get('/api/admin/reported-comments', async (req, res) => {
 app.get('/api/articles/:id/comments', async (req, res) => {
   try {
     const result = await pool.query(
-      'SELECT * FROM comments WHERE article_id = $1 ORDER BY created_at ASC', 
+      'SELECT * FROM comments WHERE article_id = $1 ORDER BY created_at ASC',
       [req.params.id]
     );
     res.json(result.rows);
-  } catch (error) { res.status(500).json({ message: "Lỗi!" }); }
+  } catch (error) {
+    console.error("❌ Lỗi comments query:", error.message, error.stack);
+    res.status(500).json({ message: "Lỗi!", detail: error.message });
+  }
 });
 
 app.get('/api/articles/:id', async (req, res) => {
@@ -439,8 +488,8 @@ if (fs.existsSync(frontendPath)) {
 
 // Kiểm tra sức khỏe hệ thống
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: "ok", 
+  res.json({
+    status: "ok",
     message: "Backend đã sống Duy ơi!",
     frontend: fs.existsSync(frontendPath) ? "Sẵn sàng" : "Thiếu thư mục dist"
   });
