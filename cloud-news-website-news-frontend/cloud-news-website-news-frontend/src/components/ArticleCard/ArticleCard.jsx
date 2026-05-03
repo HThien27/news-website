@@ -10,7 +10,7 @@ export default function ArticleCard({ article }) {
 
   const getFullImageUrl = (imageUrl) => {
     if (!imageUrl || imageUrl.includes("placeholder")) {
-        return "https://images.unsplash.com/photo-1504711432869-5d39a110fdd0?w=600&q=80"; 
+      return "https://images.unsplash.com/photo-1504711432869-5d39a110fdd0?w=600&q=80";
     }
     return imageUrl.startsWith("http") ? imageUrl : `${import.meta.env.VITE_API_URL}${imageUrl}`;
   };
@@ -39,15 +39,15 @@ export default function ArticleCard({ article }) {
               onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1504711432869-5d39a110fdd0?w=600&q=80" }}
             />
           </Link>
-          
+
           {/* NÚT LƯU BÀI BÁO (BOOKMARK) DUY NHÉ */}
-          <button 
-            className={`article-card__save-btn ${isSaved ? 'saved' : ''}`} 
+          <button
+            className={`article-card__save-btn ${isSaved ? 'saved' : ''}`}
             onClick={handleSaveToggle}
             title={isSaved ? "Bỏ lưu" : "Lưu bài viết"}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill={isSaved ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
             </svg>
           </button>
         </div>
@@ -71,10 +71,10 @@ export default function ArticleCard({ article }) {
         )}
 
         <div className="article-card__meta">
-          <img 
-            src="/VnExpress-logo-1.png" 
-            alt="VnExpress" 
-            style={{ height: '16px', width: 'auto', marginRight: '8px', objectFit: 'contain' }}
+          <img
+            src="https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg"
+            alt="VnExpress"
+            style={{ height: '16px', width: '80px', marginRight: '8px', objectFit: 'contain' }}
           />
           <span className="article-card__dot">•</span>
           <span className="article-card__time">Mới nhất</span>
