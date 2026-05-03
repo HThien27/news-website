@@ -231,7 +231,7 @@ app.get('/api/articles', async (req, res) => {
       excerpt: item.contentSnippet,
       image: extractImage(item.content),
       category: (category && category !== 'Tất cả') ? category : "Tin nóng",
-      author: { name: item.creator || "Ban biên tập VnExpress", avatar: "/VnExpress-logo-1.png" },
+      author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
     }));
     if (q) articles = articles.filter(a => a.title.toLowerCase().includes(q.toLowerCase()));
@@ -251,7 +251,7 @@ app.get('/api/top-articles', async (req, res) => {
       excerpt: item.contentSnippet,
       image: extractImage(item.content),
       category: "Nổi bật",
-      author: { name: item.creator || "Ban biên tập VnExpress", avatar: "/VnExpress-logo-1.png" },
+      author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
     }));
     res.json(articles);
@@ -280,7 +280,7 @@ app.get('/api/articles/saved/:email', async (req, res) => {
     );
     const mapped = result.rows.map(row => ({
       id: row.article_id, title: row.title, excerpt: row.excerpt, image: row.image, category: row.category,
-      author: { name: row.author_name, avatar: "/VnExpress-logo-1.png" }
+      author: { name: row.author_name, avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" }
     }));
     res.json(mapped);
   } catch (error) {
@@ -389,7 +389,7 @@ app.get('/api/articles/:id', async (req, res) => {
     res.json({
       id: req.params.id, title: item.title, subtitle: item.contentSnippet, heroImage: extractImage(item.content),
       content: [{ type: "paragraph", text: item.contentSnippet }],
-      author: { name: item.creator || "Ban biên tập VnExpress", avatar: "/VnExpress-logo-1.png" },
+      author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
     });
   } catch (error) { res.status(500).json({ message: "Lỗi chi tiết bài báo Duy nhé!" }); }
