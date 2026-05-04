@@ -232,6 +232,7 @@ app.get('/api/articles', async (req, res) => {
       title: item.title,
       excerpt: item.contentSnippet,
       image: extractImage(item.content),
+      link: item.link,
       category: (category && category !== 'Tất cả') ? category : "Tin nóng",
       author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
@@ -252,6 +253,7 @@ app.get('/api/top-articles', async (req, res) => {
       title: item.title,
       excerpt: item.contentSnippet,
       image: extractImage(item.content),
+      link: item.link,
       category: "Nổi bật",
       author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
@@ -405,10 +407,23 @@ app.get('/api/articles/:id', async (req, res) => {
         const $ = cheerio.load(response.data);
         const paragraphs = [];
         
-        // Quét các thẻ p.Normal trong khu vực bài báo
-        $('article.fck_detail p.Normal').each((i, el) => {
-          paragraphs.push({ type: "paragraph", text: $(el).text().trim() });
-        });
+        // Sử dụng nhiều selector dự phòng cho các loại bài khác nhau (Bài thường, Góc nhìn,...)
+        const selectors = [
+          'article.fck_detail p.Normal',     // Bài thường
+          '.sidebar-1 p.Normal',             // Bài dạng Góc nhìn
+          'article.fck_detail p',            // Fallback chung
+          '.content-detail p'                // Fallback khác
+        ];
+
+        for (const selector of selectors) {
+          $(selector).each((i, el) => {
+            const text = $(el).text().trim();
+            if (text.length > 50) { // Lọc đoạn quá ngắn
+              paragraphs.push({ type: "paragraph", text });
+            }
+          });
+          if (paragraphs.length > 0) break; // Dừng khi tìm được nội dung hợp lệ
+        }
 
         // Chỉ thay thế nếu cào được chữ thật
         if (paragraphs.length > 0) {
@@ -426,8 +441,10 @@ app.get('/api/articles/:id', async (req, res) => {
       created_at: item.isoDate
     };
     
-    // Lưu vào cache để lần sau mở không cần cào lại
-    articleCache[req.params.id] = responseData;
+    // Lưu vào cache để lần sau mở không cần cào lại, nhưng chỉ lưu khi cào thành công thật sự
+    if (contentParagraphs.length > 1) {
+      articleCache[req.params.id] = responseData;
+    }
     
     res.json(responseData);
   } catch (error) { res.status(500).json({ message: "Lỗi chi tiết bài báo bạn nhé!" }); }
