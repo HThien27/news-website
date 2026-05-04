@@ -7,7 +7,7 @@
   max-width: 860px;
   margin: 0 auto;
   min-height: 100vh;
-  /* Sử dụng biến màu hệ thống Duy nhé */
+  /* Sử dụng biến màu hệ thống bạn nhé */
   background-color: var(--bg); 
   color: var(--text);
   transition: all 0.3s ease;
@@ -44,7 +44,7 @@
 }
 
 .theme-card {
-  background-color: var(--code-bg); /* Màu nền card tự đổi Duy nhé */
+  background-color: var(--code-bg); /* Màu nền card tự đổi bạn nhé */
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 40px;
@@ -63,7 +63,7 @@
   box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-/* ---- Toggle Switch Duy yêu cầu ---- */
+/* ---- Toggle Switch bạn yêu cầu ---- */
 .toggle-switch {
   position: relative;
   width: 70px;
@@ -77,7 +77,7 @@
   padding: 0 5px;
 }
 
-/* Màu khi bật/tắt Duy nhé */
+/* Màu khi bật/tắt bạn nhé */
 .toggle-switch.on {
   background-color: var(--accent);
 }
@@ -99,7 +99,7 @@
   transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Hiệu ứng trượt nút Duy nhé */
+/* Hiệu ứng trượt nút bạn nhé */
 .toggle-switch.on .toggle-knob {
   transform: translateX(32px);
 }

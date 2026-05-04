@@ -43,7 +43,7 @@
   gap: 12px;
 }
 
-/* 🔔 CHUÔNG THÔNG BÁO - Duy mới thêm ở đây nhé */
+/* 🔔 CHUÔNG THÔNG BÁO - bạn mới thêm ở đây nhé */
 .notification-wrapper {
   position: relative;
   display: flex;
@@ -70,7 +70,7 @@
   height: 20px;
 }
 
-/* Chấm đỏ nhảy số thông báo Duy nhé */
+/* Chấm đỏ nhảy số thông báo bạn nhé */
 .notification-badge {
   position: absolute;
   top: -4px;
@@ -89,7 +89,7 @@
   padding: 0 4px;
 }
 
-/* Style cho các nút chức năng Duy nhé */
+/* Style cho các nút chức năng bạn nhé */
 .header-action-btn,
 .header-logout-btn {
   display: flex;
@@ -130,7 +130,7 @@
   height: 18px;
 }
 
-/* Chặn hiệu ứng kéo trên cảm ứng Duy nhé */
+/* Chặn hiệu ứng kéo trên cảm ứng bạn nhé */
 @media (hover: none) {
   .admin-header {
     touch-action: none;

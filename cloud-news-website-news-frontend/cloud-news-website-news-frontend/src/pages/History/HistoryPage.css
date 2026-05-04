@@ -22,7 +22,7 @@
   margin-bottom: 10px;
 }
 
-/* 🚀 FIX GRID: Luôn giữ đúng 3 cột Duy nhé */
+/* 🚀 FIX GRID: Luôn giữ đúng 3 cột bạn nhé */
 .hp-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -84,7 +84,7 @@
   color: #111;
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Dành cho trình duyệt cũ */
-  line-clamp: 2;         /* ✅ Tiêu chuẩn mới để xóa cảnh báo vàng Duy nhé */
+  line-clamp: 2;         /* ✅ Tiêu chuẩn mới để xóa cảnh báo vàng bạn nhé */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

@@ -22,7 +22,7 @@ export default function HistoryPage() {
         setSavedArticles(data);
       }
     } catch (error) {
-      console.error("Lỗi tải dữ liệu Duy ơi:", error);
+      console.error("Lỗi tải dữ liệu bạn ơi:", error);
     } finally {
       setLoading(false);
     }
@@ -42,7 +42,7 @@ export default function HistoryPage() {
         removeSavedArticleId(articleId);
       }
     } catch (error) {
-      console.error("Lỗi xóa bài Duy ơi:", error);
+      console.error("Lỗi xóa bài bạn ơi:", error);
     }
   };
 

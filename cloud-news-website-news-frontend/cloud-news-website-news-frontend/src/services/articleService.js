@@ -18,7 +18,7 @@ export const getAllArticles = async (category = "Tất cả", search = "", page 
 
 /**
  * 🚀 TÍNH NĂNG MỚI: Lấy danh sách tin nổi bật cho Hero & Sidebar
- * Duy cần hàm này để Home.jsx không bị lỗi trắng trang nhé!
+ * bạn cần hàm này để Home.jsx không bị lỗi trắng trang nhé!
  */
 export const getTopArticles = async () => {
   const res = await api.get("/top-articles");
@@ -26,7 +26,7 @@ export const getTopArticles = async () => {
 };
 
 /**
- * Lấy chi tiết bài viết theo ID (ID bây giờ là mã Hex Duy nhé)
+ * Lấy chi tiết bài viết theo ID (ID bây giờ là mã Hex bạn nhé)
  */
 export const getArticleById = async (id) => {
   const res = await api.get(`/articles/${id}`);

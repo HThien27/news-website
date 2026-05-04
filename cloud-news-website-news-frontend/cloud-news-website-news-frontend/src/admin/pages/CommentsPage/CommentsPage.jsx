@@ -148,7 +148,7 @@ const CommentsPage = () => {
       {/* Header */}
       <div className="comments-header">
         <h1>Quản lý Bình luận</h1>
-        <p>Quản lý cuộc trò chuyện cộng đồng. Duyệt xét các đóng góp đang chờ và quản lý<br />diễn luận với độ chính xác và tính toàn vẹn biên tập.</p>
+        <p>Quản lý cuộc trò chuyện cộng đồng. bạnệt xét các đóng góp đang chờ và quản lý<br />diễn luận với độ chính xác và tính toàn vẹn biên tập.</p>
       </div>
 
       {/* Sub-nav + search row */}
@@ -346,7 +346,7 @@ const CommentsPage = () => {
             <div className="topic-footer">
               <span className="topic-pending-count">48 Bình luận chờ duyệt</span>
               <a className="topic-approve-link">
-                Duyệt ngay <ArrowRightIcon />
+                bạnệt ngay <ArrowRightIcon />
               </a>
             </div>
           </div>

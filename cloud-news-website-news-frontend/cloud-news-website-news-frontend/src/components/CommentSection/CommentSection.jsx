@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// ✅ Import hook thông báo Duy mới tạo nhé
+// ✅ Import hook thông báo bạn mới tạo nhé
 import { useNotifications } from "../../contexts/NotificationContext"; 
 import "./CommentSection.css";
 
@@ -75,7 +75,7 @@ export default function CommentSection({ comments = [], onCommentSubmit, fetchCo
         setTargetEmail("");
       }
     } catch (err) {
-      console.error("Lỗi gửi rep Duy ơi:", err);
+      console.error("Lỗi gửi rep bạn ơi:", err);
     }
   };
 
@@ -84,7 +84,7 @@ export default function CommentSection({ comments = [], onCommentSubmit, fetchCo
 
     // ✅ GIỮ NGUYÊN CHỨC NĂNG XÓA CỦA DUY
     if (action === 'delete') {
-      if (!window.confirm("Duy chắc chắn muốn xóa bình luận này chứ?")) return;
+      if (!window.confirm("bạn chắc chắn muốn xóa bình luận này chứ?")) return;
       setLocalComments(prev => prev.filter(c => c.id !== commentId));
     }
 
@@ -109,7 +109,7 @@ export default function CommentSection({ comments = [], onCommentSubmit, fetchCo
 
       if (res.ok) {
         if (action === 'like') {
-          // 🚀 Bắn thông báo Like Duy nhé
+          // 🚀 Bắn thông báo Like bạn nhé
           await pushNotification(authorEmail, 'like', 'đã thích bình luận của bạn');
 
           if (data.likes !== undefined) {
@@ -215,7 +215,7 @@ export default function CommentSection({ comments = [], onCommentSubmit, fetchCo
 function CommentItem({ comment, currentUser, onReply, onLike, onReport, onDelete, activeMenuId, setActiveMenuId, getInitials, isReply }) {
   const isOwner = currentUser.email === comment.user_email;
 
-  // 🚀 Logic Tag tím (Sửa Regex của Duy cho chuẩn)
+  // 🚀 Logic Tag tím (Sửa Regex của bạn cho chuẩn)
   const tagMatch = (comment.content || "").match(/^@\[([^\]]+)\]/);
   const tagNameOnly = tagMatch ? tagMatch[1] : null;
   const cleanContent = tagMatch ? comment.content.substring(tagMatch[0].length) : comment.content;

@@ -18,8 +18,8 @@ const parser = new Parser({
 
 // MongoDB (Lưu User)
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/press_users_db')
-  .then(() => console.log('✅ MongoDB: Đã kết nối press_users_db'))
-  .catch(err => console.error('❌ Lỗi MongoDB:', err));
+  .then(() => console.log(' MongoDB: Đã kết nối press_users_db'))
+  .catch(err => console.error(' Lỗi MongoDB:', err));
 
 const userSchema = new mongoose.Schema({
   fullname: String,
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   joinDate: String,
   role: { type: String, default: "Subscriber" },
   status: { type: String, default: "Ngoại tuyến" },
-  // ✅ CẬP NHẬT: Thêm để hỗ trợ xác thực Google/Facebook Duy nhé
+  //
   provider: { type: String, default: "local" },
   socialId: { type: String }
 });
@@ -47,7 +47,7 @@ const pool = new Pool({
 
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
-    console.error('❌ Lỗi PostgreSQL Duy ơi!', err.message);
+    console.error('❌ Lỗi PostgreSQL bạn ơi!', err.message);
   } else {
     console.log('✅ PostgreSQL: Đã kết nối press_news_db thành công');
     // Tự động tạo bảng nếu chưa có
@@ -122,7 +122,7 @@ app.post('/api/auth/register', async (req, res) => {
   const { fullname, email, password } = req.body;
   try {
     const existing = await User.findOne({ email });
-    if (existing) return res.status(400).json({ message: "Email đã tồn tại Duy ơi!" });
+    if (existing) return res.status(400).json({ message: "Email đã tồn tại bạn ơi!" });
 
     const newUser = new User({
       fullname, email, password,
@@ -155,7 +155,7 @@ app.post('/api/auth/social-login', async (req, res) => {
   try {
     let user = await User.findOne({ $or: [{ email }, { socialId }] });
     if (user) {
-      user.status = "Đang hoạt động"; // ✅ FIX: Đã sửa lại typo Duy nhé
+      user.status = "Đang hoạt động"; // ✅ FIX: Đã sửa lại typo bạn nhé
       await user.save();
     } else {
       user = new User({
@@ -170,7 +170,7 @@ app.post('/api/auth/social-login', async (req, res) => {
     console.log(`🌐 User ${user.fullname} đã đăng nhập qua ${provider}`);
     res.json({ token: `token-2026-${provider}`, user });
   } catch (err) {
-    res.status(500).json({ message: "Lỗi đăng nhập social Duy ơi!" });
+    res.status(500).json({ message: "Lỗi đăng nhập social bạn ơi!" });
   }
 });
 
@@ -209,9 +209,9 @@ app.put('/api/auth/change-password', async (req, res) => {
   const { email, oldPassword, newPassword } = req.body;
   try {
     const user = await User.findOne({ email, password: oldPassword });
-    if (!user) return res.status(401).json({ message: "Mật khẩu hiện tại không chính xác Duy ơi!" });
+    if (!user) return res.status(401).json({ message: "Mật khẩu hiện tại không chính xác bạn ơi!" });
     const isDuplicate = await User.findOne({ password: newPassword });
-    if (isDuplicate) return res.status(400).json({ message: "Mật khẩu này đã có người sử dụng. Duy chọn mật khẩu khác nhé!" });
+    if (isDuplicate) return res.status(400).json({ message: "Mật khẩu này đã có người sử dụng. bạn chọn mật khẩu khác nhé!" });
     user.password = newPassword;
     await user.save();
     res.json({ message: "Đổi mật khẩu thành công!" });
@@ -300,7 +300,7 @@ app.delete('/api/articles/save/:articleId/:email', async (req, res) => {
 
 app.post('/api/articles/comments', async (req, res) => {
   const { articleId, userEmail, userName, userAvatar, content, parentId } = req.body;
-  if (!content) return res.status(400).json({ message: "Duy ơi, nội dung bình luận trống!" });
+  if (!content) return res.status(400).json({ message: "bạn ơi, nội dung bình luận trống!" });
   try {
     await pool.query(
       `INSERT INTO comments (article_id, user_email, user_name, user_avatar, content, parent_id) 
@@ -314,7 +314,7 @@ app.post('/api/articles/comments', async (req, res) => {
 app.post('/api/articles/comments/:id/like', async (req, res) => {
   const { userEmail } = req.body;
   const commentId = req.params.id;
-  if (!userEmail) return res.status(400).json({ message: "Chưa có email Duy nhé!" });
+  if (!userEmail) return res.status(400).json({ message: "Chưa có email bạn nhé!" });
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
@@ -392,7 +392,7 @@ app.get('/api/articles/:id', async (req, res) => {
       author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
     });
-  } catch (error) { res.status(500).json({ message: "Lỗi chi tiết bài báo Duy nhé!" }); }
+  } catch (error) { res.status(500).json({ message: "Lỗi chi tiết bài báo bạn nhé!" }); }
 });
 
 // --- 6. HỆ THỐNG THÔNG BÁO (POSTGRESQL) ---
@@ -406,7 +406,7 @@ app.post("/api/notifications/add", async (req, res) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    console.error("Lỗi thêm thông báo Duy ơi:", err);
+    console.error("Lỗi thêm thông báo bạn ơi:", err);
     res.status(500).json({ error: "Server không lưu được thông báo!" });
   }
 });
@@ -432,14 +432,14 @@ app.post("/api/notifications/read-all", async (req, res) => {
       "UPDATE notifications SET is_read = true WHERE receiver_email = $1",
       [email]
     );
-    res.json({ message: "Đã dọn sạch chấm đỏ cho Duy!" });
+    res.json({ message: "Đã dọn sạch chấm đỏ cho bạn!" });
   } catch (err) {
     console.error("Lỗi cập nhật trạng thái đọc:", err);
     res.status(500).json({ error: "Không update được trạng thái rồi" });
   }
 });
 
-// ✅ API MỚI: Xóa tất cả thông báo của một người Duy nhé
+// ✅ API MỚI: Xóa tất cả thông báo của một người bạn nhé
 app.delete("/api/notifications/:email", async (req, res) => {
   try {
     await pool.query("DELETE FROM notifications WHERE receiver_email = $1", [req.params.email]);
@@ -449,7 +449,7 @@ app.delete("/api/notifications/:email", async (req, res) => {
 
 // --- 7. HỆ THỐNG QUẢN TRỊ & THỐNG KÊ (MỚI) ---
 
-// ✅ API: Lấy thống kê cho Dashboard Admin Duy nhé
+// ✅ API: Lấy thống kê cho Dashboard Admin bạn nhé
 app.get('/api/admin/stats', async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
@@ -467,7 +467,7 @@ app.put('/api/admin/users/:email/role', async (req, res) => {
   } catch (err) { res.status(500).json({ message: "Lỗi đổi quyền!" }); }
 });
 
-// ✅ API: Xóa vĩnh viễn người dùng Duy nhé
+// ✅ API: Xóa vĩnh viễn người dùng bạn nhé
 app.delete('/api/admin/users/:email', async (req, res) => {
   try {
     await User.findOneAndDelete({ email: req.params.email });
@@ -490,7 +490,7 @@ if (fs.existsSync(frontendPath)) {
 app.get('/api/health', (req, res) => {
   res.json({
     status: "ok",
-    message: "Backend đã sống Duy ơi!",
+    message: "Backend đã sống bạn ơi!",
     frontend: fs.existsSync(frontendPath) ? "Sẵn sàng" : "Thiếu thư mục dist"
   });
 });
@@ -501,7 +501,7 @@ app.use((req, res, next) => {
     if (fs.existsSync(path.join(frontendPath, 'index.html'))) {
       res.sendFile(path.join(frontendPath, 'index.html'));
     } else {
-      res.status(404).send("Giao diện chưa được biên dịch thành công Duy ơi!");
+      res.status(404).send("Giao diện chưa được biên dịch thành công bạn ơi!");
     }
   } else {
     next();

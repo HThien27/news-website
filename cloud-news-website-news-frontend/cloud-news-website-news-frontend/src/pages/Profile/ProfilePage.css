@@ -4,7 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
-/* ---------- Variables (Đã kết nối với hệ thống Duy nhé) ---------- */
+/* ---------- Variables (Đã kết nối với hệ thống bạn nhé) ---------- */
 :root {
   --profile-blue: #1a56db;
   --profile-blue-dark: #1344b8;
@@ -33,7 +33,7 @@
 
 /* ---------- Profile Header ---------- */
 .profile-header {
-  background: var(--profile-bg); /* Đổi từ trắng sang biến màu Duy nhé */
+  background: var(--profile-bg); /* Đổi từ trắng sang biến màu bạn nhé */
   border-bottom: 1px solid var(--profile-border);
   padding: 40px 0;
 }
@@ -54,7 +54,7 @@
   overflow: hidden;
   flex-shrink: 0;
   background: var(--profile-border);
-  border: 3px solid var(--profile-bg); /* Viền tiệp màu nền Duy nhé */
+  border: 3px solid var(--profile-bg); /* Viền tiệp màu nền bạn nhé */
   box-shadow: var(--shadow);
   position: relative;
 }
@@ -152,7 +152,7 @@
   padding: 12px 16px;
   font-size: 15px;
   color: var(--profile-text);
-  background: var(--profile-bg); /* Sáng hay tối đều tự nhảy Duy nhé */
+  background: var(--profile-bg); /* Sáng hay tối đều tự nhảy bạn nhé */
   border: 1px solid var(--profile-border);
   border-radius: 8px;
   box-sizing: border-box;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './ContentManagePage.css';
 
-// Thêm bộ Icon để giống trang Users Duy nhé
+// Thêm bộ Icon để giống trang Users bạn nhé
 const Icon = {
   Alert: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -30,7 +30,7 @@ export default function ContentManagePage() {
       const data = await res.json();
       setReports(data);
     } catch (err) {
-      console.error("Lỗi lấy tố cáo Duy ơi!");
+      console.error("Lỗi lấy tố cáo bạn ơi!");
     } finally {
       setLoading(false);
     }

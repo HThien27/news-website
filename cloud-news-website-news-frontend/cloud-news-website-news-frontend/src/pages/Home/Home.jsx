@@ -6,7 +6,7 @@ import CategorySection from "../../components/CategorySection/CategorySection";
 import Newsletter from "../../components/Newsletter/Newsletter";
 import Footer from "../../components/Footer/Footer";
 import { getAllArticles, getTopArticles } from "../../services/articleService";
-// FIX: Import hook quản lý bài viết đã lưu để dùng cho nút Lịch sử Duy nhé
+// FIX: Import hook quản lý bài viết đã lưu để dùng cho nút Lịch sử bạn nhé
 import { useSavedArticles } from "../../contexts/SavedArticlesContext"; 
 import "./Home.css";
 
@@ -65,7 +65,7 @@ export default function Home() {
       
       <main>
         <section className="home-top">
-          {/* TIÊU ĐIỂM: Truyền thêm trạng thái đã lưu để hiện icon xanh Duy nhé */}
+          {/* TIÊU ĐIỂM: Truyền thêm trạng thái đã lưu để hiện icon xanh bạn nhé */}
           <HeroSection 
             featuredArticle={topArticles.length > 0 ? topArticles[0] : null} 
             loading={loading}

@@ -88,7 +88,7 @@ export default function RegisterForm({ onSuccess }) {
   });
 
   const handleSubmit = async () => {
-    // FIX: Loại bỏ khoảng trắng ở 2 đầu để không bị lỗi Regex Duy nhé
+    // FIX: Loại bỏ khoảng trắng ở 2 đầu để không bị lỗi Regex bạn nhé
     const rawFullname = fullnameRef.current.value.trim();
     const rawEmail = form.email.trim();
     const rawPassword = form.password.trim();
@@ -97,7 +97,7 @@ export default function RegisterForm({ onSuccess }) {
     setError("");
     const errors = {};
     
-    // Regex email linh hoạt hơn cho Duy nhé
+    // Regex email linh hoạt hơn cho bạn nhé
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
     // Mật khẩu: Ít nhất 6 ký tự, có 1 chữ HOA và 1 ký tự đặc biệt
     const passRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/;
@@ -109,7 +109,7 @@ export default function RegisterForm({ onSuccess }) {
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
-      setError("Thông tin nhập chưa đúng (Email cần đúng định dạng, Mật khẩu cần chữ HOA và ký tự đặc biệt) Duy nhé!");
+      setError("Thông tin nhập chưa đúng (Email cần đúng định dạng, Mật khẩu cần chữ HOA và ký tự đặc biệt) bạn nhé!");
       return;
     }
 

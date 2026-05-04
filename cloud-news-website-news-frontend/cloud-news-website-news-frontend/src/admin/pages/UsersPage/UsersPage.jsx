@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './UsersPage.css';
 
-// ── Icons (Giữ nguyên bộ SVG xịn của Duy) ──────────────────────────────────────────────
+// ── Icons (Giữ nguyên bộ SVG xịn của bạn) ──────────────────────────────────────────────
 const Icon = {
   UserPlus: () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -51,12 +51,12 @@ const Icon = {
   ),
 };
 
-// ── Modal Thêm Người Dùng (Giữ nguyên logic Duy đã viết) ───────────────────────────────────
+// ── Modal Thêm Người Dùng (Giữ nguyên logic bạn đã viết) ───────────────────────────────────
 function AddUserModal({ onClose, onRefresh }) {
   const [form, setForm] = useState({ name: '', email: '', password: '', role: 'Subscriber', status: 'Ngoại tuyến' });
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.password) return alert("Duy ơi, nhập đủ tên, email và pass nhé!");
+    if (!form.name || !form.email || !form.password) return alert("bạn ơi, nhập đủ tên, email và pass nhé!");
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/auth/register`, {
         method: 'POST',
@@ -64,7 +64,7 @@ function AddUserModal({ onClose, onRefresh }) {
         body: JSON.stringify({ fullname: form.name, email: form.email, password: form.password })
       });
       if (response.ok) {
-        alert("Thêm thành công! Giờ user này login được rồi đó Duy nhé.");
+        alert("Thêm thành công! Giờ user này login được rồi đó bạn nhé.");
         onRefresh();
         onClose();
       } else {
@@ -105,7 +105,7 @@ function AddUserModal({ onClose, onRefresh }) {
   );
 }
 
-// ── UsersPage Chính (Đã thêm tính năng Real-time Polling Duy nhé) ───────────────────────────────────
+// ── UsersPage Chính (Đã thêm tính năng Real-time Polling bạn nhé) ───────────────────────────────────
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -120,9 +120,9 @@ export default function UsersPage() {
       
       const mapped = data.map(u => ({
         ...u,
-        // Tạo initials từ fullname an toàn Duy nhé
+        // Tạo initials từ fullname an toàn bạn nhé
         initials: u.fullname ? u.fullname.split(' ').map(w => w[0]).slice(-2).join('').toUpperCase() : "??",
-        // Chuyển đổi status string từ Backend sang class CSS Duy nhé
+        // Chuyển đổi status string từ Backend sang class CSS bạn nhé
         displayStatus: u.status === 'Đang hoạt động' ? 'active' : 'offline'
       }));
       setUsers(mapped);
@@ -133,7 +133,7 @@ export default function UsersPage() {
     }
   };
 
-  // ✅ FIX: Tự động cập nhật mỗi 10 giây để Duy thấy ai vừa online/offline
+  // ✅ FIX: Tự động cập nhật mỗi 10 giây để bạn thấy ai vừa online/offline
   useEffect(() => { 
     fetchUsers(); 
     const timer = setInterval(fetchUsers, 10000); 
@@ -144,7 +144,7 @@ export default function UsersPage() {
   const paginated = users.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   const handleDelete = async (id) => {
-    if (window.confirm("Xóa tài khoản này nhé Duy?")) {
+    if (window.confirm("Xóa tài khoản này nhé bạn?")) {
       await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/admin/users/${id}`, { method: 'DELETE' });
       fetchUsers();
     }
@@ -193,7 +193,7 @@ export default function UsersPage() {
                 <tr key={user._id}>
                   <td>
                     <div className="user-cell">
-                      {/* Ưu tiên hiện ảnh đại diện Duy đã upload nhé */}
+                      {/* Ưu tiên hiện ảnh đại diện bạn đã upload nhé */}
                       {user.avatar ? (
                         <img src={user.avatar} className="user-avatar-img" alt="AVT" style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover' }} />
                       ) : (
@@ -207,7 +207,7 @@ export default function UsersPage() {
                   </td>
                   <td><span className="role-badge">{user.role || "Subscriber"}</span></td>
                   <td>
-                    {/* Chấm xanh cho Online, Chấm xám cho Offline Duy nhé */}
+                    {/* Chấm xanh cho Online, Chấm xám cho Offline bạn nhé */}
                     <span className={`status-dot status-dot--${user.displayStatus}`}>
                       {user.status || 'Ngoại tuyến'}
                     </span>

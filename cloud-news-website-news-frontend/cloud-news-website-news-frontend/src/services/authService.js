@@ -24,7 +24,7 @@ export async function login(email, password) {
 
   const data = await res.json();
 
-  // ✅ FIX: Lưu cả token và thông tin user để đồng bộ giao diện Duy nhé
+  // ✅ FIX: Lưu cả token và thông tin user để đồng bộ giao diện bạn nhé
   if (data.token) {
     localStorage.setItem("access_token", data.token);
   }
@@ -62,8 +62,8 @@ export async function register(fullname, email, password) {
 }
 
 /**
- * FIX: Gửi ảnh đại diện mới lên máy chủ để lưu vĩnh viễn Duy nhé
- * Đã khớp với Backend MongoDB 100% rồi Duy ơi!
+ * FIX: Gửi ảnh đại diện mới lên máy chủ để lưu vĩnh viễn bạn nhé
+ * Đã khớp với Backend MongoDB 100% rồi bạn ơi!
  */
 export async function updateAvatar(email, avatar) {
   const res = await fetch(`${BASE_URL}/auth/update-avatar`, {
@@ -79,7 +79,7 @@ export async function updateAvatar(email, avatar) {
 }
 
 /**
- * Đăng xuất - xóa sạch dấu vết Duy nhé
+ * Đăng xuất - xóa sạch dấu vết bạn nhé
  */
 export function logout() {
   localStorage.removeItem("access_token");
@@ -95,7 +95,7 @@ export function isAuthenticated() {
 }
 
 /**
- * Lấy thông tin user hiện tại (Duy nhớ check Backend xem có route /me chưa nhé)
+ * Lấy thông tin user hiện tại (bạn nhớ check Backend xem có route /me chưa nhé)
  */
 export async function getCurrentUser() {
   const token = getToken();

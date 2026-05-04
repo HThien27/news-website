@@ -27,7 +27,7 @@ const navItems = [
       </svg>
     ),
   },
-  // ✅ Đã xóa mục Cài đặt Duy nhé
+  // ✅ Đã xóa mục Cài đặt bạn nhé
 ];
 
 const AdminSidebar = ({ currentPage, collapsed, onToggle }) => {
@@ -73,7 +73,7 @@ const AdminSidebar = ({ currentPage, collapsed, onToggle }) => {
           </div>
           {!collapsed && (
             <div className="user-info">
-              <span className="user-name">Đào Văn Duy</span>
+              <span className="user-name">Đào Văn bạn</span>
               <span className="user-role">Quản trị hệ thống</span>
             </div>
           )}

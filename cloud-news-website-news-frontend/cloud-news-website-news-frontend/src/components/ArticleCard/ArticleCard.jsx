@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSavedArticles } from "../../contexts/SavedArticlesContext"; // Nhớ kiểm tra đúng đường dẫn Duy nhé
+import { useSavedArticles } from "../../contexts/SavedArticlesContext"; // Nhớ kiểm tra đúng đường dẫn bạn nhé
 import "./ArticleCard.css";
 
 export default function ArticleCard({ article }) {
@@ -15,7 +15,7 @@ export default function ArticleCard({ article }) {
     return imageUrl.startsWith("http") ? imageUrl : `${import.meta.env.VITE_API_URL}${imageUrl}`;
   };
 
-  // Hàm xử lý khi bấm nút lưu Duy nhé
+  // Hàm xử lý khi bấm nút lưu bạn nhé
   const handleSaveToggle = (e) => {
     e.preventDefault(); // Ngăn việc bấm nút bị nhảy vào trang chi tiết
     if (isSaved) {

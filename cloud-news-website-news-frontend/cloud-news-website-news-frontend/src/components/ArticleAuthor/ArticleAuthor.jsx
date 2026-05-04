@@ -2,11 +2,11 @@
 import "./ArticleAuthor.css";
 
 export default function ArticleAuthor({ author }) {
-  // Nếu hoàn toàn không có dữ liệu author thì không hiện gì cả Duy nhé
+  // Nếu hoàn toàn không có dữ liệu author thì không hiện gì cả bạn nhé
   if (!author) return null;
 
   // FIX: Thiết lập giá trị mặc định. 
-  // Nếu server trả về "Ban biên tập VnExpress" thì nó sẽ hiện ở đây Duy nhé.
+  // Nếu server trả về "Ban biên tập VnExpress" thì nó sẽ hiện ở đây bạn nhé.
   const authorName = author.name || "Ban biên tập VnExpress";
   const authorAvatar = author.avatar || "/VnExpress-logo-1.png";
 
@@ -31,9 +31,9 @@ export default function ArticleAuthor({ author }) {
           style={{ 
             width: '80%', // Thu nhỏ logo lại một chút để không bị chạm viền tròn
             height: 'auto', 
-            objectFit: 'contain' // FIX: Giữ nguyên tỷ lệ ảnh, không bị cắt mất chữ Duy nhé
+            objectFit: 'contain' // FIX: Giữ nguyên tỷ lệ ảnh, không bị cắt mất chữ bạn nhé
           }}
-          // Nếu lỡ ảnh bị lỗi đường dẫn, nó sẽ tự hiện logo báo của Duy
+          // Nếu lỡ ảnh bị lỗi đường dẫn, nó sẽ tự hiện logo báo của bạn
           onError={(e) => { e.target.src = "/VnExpress-logo-1.png"; }}
         />
       </div>

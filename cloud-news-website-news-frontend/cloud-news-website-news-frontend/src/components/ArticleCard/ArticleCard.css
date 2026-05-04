@@ -130,7 +130,7 @@
   transition: color 0.2s;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2; /* FIX: Thêm dòng này Duy nhé */
+  line-clamp: 2; /* FIX: Thêm dòng này bạn nhé */
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
@@ -148,7 +148,7 @@
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2; /* FIX: Thêm dòng này Duy nhé */
+  line-clamp: 2; /* FIX: Thêm dòng này bạn nhé */
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
@@ -192,13 +192,13 @@
   .article-card__title {
     font-size: 0.95rem;
     -webkit-line-clamp: 2;
-    line-clamp: 2; /* FIX Duy nhé */
+    line-clamp: 2; /* FIX bạn nhé */
   }
 
   .article-card__excerpt {
     font-size: 0.85rem;
     -webkit-line-clamp: 1;
-    line-clamp: 1; /* FIX Duy nhé */
+    line-clamp: 1; /* FIX bạn nhé */
   }
 }
 
@@ -216,14 +216,14 @@
     font-size: 0.9rem;
     line-height: 1.3;
     -webkit-line-clamp: 2;
-    line-clamp: 2; /* FIX Duy nhé */
+    line-clamp: 2; /* FIX bạn nhé */
   }
 
   .article-card__excerpt {
     font-size: 0.8rem;
     line-height: 1.4;
     -webkit-line-clamp: 1;
-    line-clamp: 1; /* FIX Duy nhé */
+    line-clamp: 1; /* FIX bạn nhé */
   }
 
   .article-card__category {

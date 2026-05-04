@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// ✅ Đã gỡ facebookProvider để không bị lỗi import Duy nhé
+// ✅ Đã gỡ facebookProvider để không bị lỗi import bạn nhé
 import { auth, googleProvider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { BASE_URL } from "../../utils/apiConfig";
@@ -33,7 +33,7 @@ export default function OAuthButtons() {
     e.currentTarget.style.transform = enter ? "translateY(-1px)" : "translateY(0)";
   };
 
-  // ✅ Logic đã rút gọn chỉ còn cho Google Duy nhé
+  // ✅ Logic đã rút gọn chỉ còn cho Google bạn nhé
   const handleGoogleLogin = async () => {
     setLoading(true);
 
@@ -64,7 +64,7 @@ export default function OAuthButtons() {
         navigate("/");
         window.location.reload();
       } else {
-        alert(data.message || "Lỗi đăng nhập Google Duy ơi!");
+        alert(data.message || "Lỗi đăng nhập Google bạn ơi!");
       }
 
     } catch (err) {
@@ -79,7 +79,7 @@ export default function OAuthButtons() {
 
   return (
     <div style={{ display: "flex", gap: 12, marginBottom: 24 }}>
-      {/* Chỉ giữ lại nút Google và căn giữa nó Duy nhé */}
+      {/* Chỉ giữ lại nút Google và căn giữa nó bạn nhé */}
       <button
         style={btnStyle}
         onMouseEnter={e => handleHover(e, true)}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useSavedArticles } from "../../contexts/SavedArticlesContext"; // Duy nhớ check lại đường dẫn file Context nhé
+import { useSavedArticles } from "../../contexts/SavedArticlesContext"; // bạn nhớ check lại đường dẫn file Context nhé
 import "./HeroSection.css";
 
 export default function HeroSection({ featuredArticle, loading }) {
@@ -10,10 +10,10 @@ export default function HeroSection({ featuredArticle, loading }) {
     return <div className="hero-loading">Đang tải tiêu điểm bạn chờ xíu...</div>;
   }
 
-  // Kiểm tra trạng thái đã lưu từ Context Duy nhé
+  // Kiểm tra trạng thái đã lưu từ Context bạn nhé
   const isSaved = savedArticleIds.includes(String(featuredArticle.id));
 
-  // Hàm xử lý riêng cho nút Lưu Duy nhé
+  // Hàm xử lý riêng cho nút Lưu bạn nhé
   const handleSaveClick = (e) => {
     e.preventDefault(); 
     e.stopPropagation();
@@ -35,7 +35,7 @@ export default function HeroSection({ featuredArticle, loading }) {
         <div className="hero__content">
           <div className="hero__meta" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             
-            {/* Icon Lưu bài nằm bên góc trái Duy nhé */}
+            {/* Icon Lưu bài nằm bên góc trái bạn nhé */}
             <button 
               onClick={handleSaveClick}
               className="hero__save-btn"

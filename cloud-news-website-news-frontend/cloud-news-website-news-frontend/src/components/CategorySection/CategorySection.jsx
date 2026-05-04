@@ -7,7 +7,7 @@ const ARTICLES_PER_PAGE = 15;
 export default function CategorySection({ articles = [], loading, title = "Tất cả bài viết" }) {
   const [currentPage, setCurrentPage] = useState(1);
 
-  /* ĐÃ FIX: Khi Duy đổi chuyên mục (title đổi) hoặc tìm kiếm (articles đổi), 
+  /* ĐÃ FIX: Khi bạn đổi chuyên mục (title đổi) hoặc tìm kiếm (articles đổi), 
      phải đưa về trang 1 để không bị trống trang hoặc loạn dữ liệu */
   useEffect(() => {
     setCurrentPage(1);

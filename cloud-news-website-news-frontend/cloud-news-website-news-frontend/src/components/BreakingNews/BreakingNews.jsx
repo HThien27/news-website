@@ -10,7 +10,7 @@ export default function BreakingNews({
 }) {
   if (loading && articles.length === 0) return null;
 
-  // Hàm xử lý lưu bài viết Duy nhé
+  // Hàm xử lý lưu bài viết bạn nhé
   const handleSaveClick = (e, articleId, isSaved) => {
     e.preventDefault();
     e.stopPropagation();
@@ -35,7 +35,7 @@ export default function BreakingNews({
             <li key={item.id} className="breaking-news__item">
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 
-                {/* FIX: Nút lưu bài viết hiện màu xanh khi đã lưu Duy nhé */}
+                {/* FIX: Nút lưu bài viết hiện màu xanh khi đã lưu bạn nhé */}
                 <button 
                   onClick={(e) => handleSaveClick(e, item.id, isSaved)}
                   style={{
@@ -53,7 +53,7 @@ export default function BreakingNews({
                 </button>
 
                 <div style={{ flex: 1 }}>
-                  {/* FIX: Chuyên mục màu đỏ, không gạch chân Duy nhé */}
+                  {/* FIX: Chuyên mục màu đỏ, không gạch chân bạn nhé */}
                   <span 
                     className="breaking-news__category" 
                     style={{ color: '#ff4d4d', fontWeight: '700', textDecoration: 'none' }}
@@ -71,7 +71,7 @@ export default function BreakingNews({
 
                   <div className="breaking-news__item-meta">
                     <span>VnExpress</span>
-                    {/* Đã xóa chữ "Mới nhất" ở đây theo yêu cầu của Duy */}
+                    {/* Đã xóa chữ "Mới nhất" ở đây theo yêu cầu của bạn */}
                   </div>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import AuthPage from '../pages/Auth/AuthPage';
 import ArticleDetail from "../pages/ArticleDetail/ArticleDetail";
 import ProfilePage from "../pages/Profile/ProfilePage";
 import AdminRouter from "../admin/AdminRouter";
-// FIX: Import trang Lịch sử để sử dụng Duy nhé
+// FIX: Import trang Lịch sử để sử dụng bạn nhé
 import HistoryPage from "../pages/History/HistoryPage"; 
 
 export const router = createBrowserRouter([

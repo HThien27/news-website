@@ -1,5 +1,5 @@
 /* ============================================================
-   home.css — Cập nhật giao diện Tiêu điểm Duy nhé
+   home.css — Cập nhật giao diện Tiêu điểm bạn nhé
    ============================================================ */
 
 .home-page {
@@ -29,7 +29,7 @@
 
 /* 2. Chữ TIÊU ĐIỂM hiện màu đỏ và KHÔNG gạch chân */
 .featured-news__label-text {
-  color: #dc2626 !important; /* Màu đỏ đậm chuẩn Duy nhé */
+  color: #dc2626 !important; /* Màu đỏ đậm chuẩn bạn nhé */
   font-weight: 700;
   text-decoration: none !important;
   border-bottom: none !important; /* Xóa nếu nó là border */
@@ -43,7 +43,7 @@
   border-bottom: none !important;
 }
 
-/* 4. Xóa chữ "vừa cập nhật" Duy nhé */
+/* 4. Xóa chữ "vừa cập nhật" bạn nhé */
 /* Mình sẽ ẩn các thành phần hiển thị thời gian cập nhật trong card */
 .featured-card__update-time, 
 .featured-small-card__update,

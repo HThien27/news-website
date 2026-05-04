@@ -9,7 +9,7 @@ const AdminHeader = ({ title = "Diễn Đàn Press" }) => {
   };
 
   const handleLogout = () => {
-    // 1. Xóa thông tin Admin Duy nhé
+    // 1. Xóa thông tin Admin bạn nhé
     localStorage.removeItem("admin_token");
     localStorage.removeItem("admin_user");
     // 2. Chuyển về trang Login

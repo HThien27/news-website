@@ -101,7 +101,7 @@ export default function ProfilePage() {
       reader.onload = async (event) => {
         const newAvatarData = event.target?.result;
         
-        // 1. Hiển thị tạm lên giao diện để Duy thấy thay đổi ngay
+        // 1. Hiển thị tạm lên giao diện để bạn thấy thay đổi ngay
         const oldAvatar = avatar;
         setAvatar(newAvatarData);
 
@@ -110,7 +110,7 @@ export default function ProfilePage() {
           const response = await updateAvatar(user.email, newAvatarData);
           
           if (response) {
-            // 3. CHỈ KHI SERVER LƯU XONG: Mới cập nhật localStorage Duy nhé
+            // 3. CHỈ KHI SERVER LƯU XONG: Mới cập nhật localStorage bạn nhé
             const updatedUser = { ...user, avatar: newAvatarData };
             setUser(updatedUser);
             localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -118,9 +118,9 @@ export default function ProfilePage() {
           }
         } catch (err) {
           console.error("❌ Lỗi khi lưu ảnh lên server:", err);
-          // Nếu lỗi thì trả lại ảnh cũ cho Duy đỡ nhầm
+          // Nếu lỗi thì trả lại ảnh cũ cho bạn đỡ nhầm
           setAvatar(oldAvatar);
-          alert("Lỗi server! Duy kiểm tra xem đã chạy Backend chưa nhé.");
+          alert("Lỗi server! bạn kiểm tra xem đã chạy Backend chưa nhé.");
         }
       };
       reader.readAsDataURL(file);

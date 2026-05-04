@@ -42,7 +42,7 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [userEmail, setUserEmail] = useState(""); // Lưu email người dùng Duy nhé
+  const [userEmail, setUserEmail] = useState(""); // Lưu email người dùng bạn nhé
 
   useEffect(() => {
     // Lấy email người dùng từ localStorage khi mở Modal
@@ -64,7 +64,7 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
     return errs;
   };
 
-  // FIX: HÀM CẬP NHẬT MẬT KHẨU THỰC TẾ GỬI LÊN BACKEND Duy nhé
+  // FIX: HÀM CẬP NHẬT MẬT KHẨU THỰC TẾ GỬI LÊN BACKEND bạn nhé
   const handleSubmit = async () => {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
@@ -73,7 +73,7 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
     setLoading(true);
 
     try {
-      // Gửi yêu cầu đổi mật khẩu lên cổng 5000 Duy nhé
+      // Gửi yêu cầu đổi mật khẩu lên cổng 5000 bạn nhé
       const response = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/auth/change-password`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -93,11 +93,11 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
           handleClose();
         }, 1800);
       } else {
-        // Nếu mật khẩu cũ sai, Backend sẽ báo và hiện lỗi ở đây Duy nhé
+        // Nếu mật khẩu cũ sai, Backend sẽ báo và hiện lỗi ở đây bạn nhé
         setErrors({ currentPw: data.message || "Đã có lỗi xảy ra." });
       }
     } catch (err) {
-      setErrors({ currentPw: "Không thể kết nối máy chủ. Hãy chạy server.js Duy nhé!" });
+      setErrors({ currentPw: "Không thể kết nối máy chủ. Hãy chạy server.js bạn nhé!" });
     } finally {
       setLoading(false);
     }
@@ -114,7 +114,7 @@ const ChangePasswordModal = ({ isOpen, onClose }) => {
   return (
     <div className="cpw-overlay" onClick={handleClose}>
       <div className="cpw-modal" onClick={(e) => e.stopPropagation()}>
-        {/* FIX: CSS ẨN CON MẮT DƯ THỪA TRÊN TRÌNH DUYỆT Duy nhé */}
+        {/* FIX: CSS ẨN CON MẮT DƯ THỪA TRÊN TRÌNH DUYỆT bạn nhé */}
         <style>{`
           input::-ms-reveal, input::-ms-clear { display: none; }
         `}</style>

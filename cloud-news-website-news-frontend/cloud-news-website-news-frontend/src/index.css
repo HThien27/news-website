@@ -1,8 +1,8 @@
-/* Gom tất cả font vào một chỗ cho sạch Duy nhé */
+/* Gom tất cả font vào một chỗ cho sạch bạn nhé */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Bảng màu Sáng cố định Duy nhé */
+  /* Bảng màu Sáng cố định bạn nhé */
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #ffffff;
@@ -37,7 +37,7 @@ html, body {
   background-color: var(--bg) !important;
   color: var(--text) !important;
   font-family: var(--sans);
-  /* Chống hiệu ứng kéo "bóng ma" lò xo Duy nhé */
+  /* Chống hiệu ứng kéo "bóng ma" lò xo bạn nhé */
   overscroll-behavior-y: none; 
   height: 100%;
 }
@@ -66,8 +66,8 @@ main {
   flex: 1;
 }
 
-/* Các thẻ container con Duy cần giới hạn chặt chẽ */
-/* ✅ Đã xóa .settings-page khỏi danh sách Duy nhé */
+/* Các thẻ container con bạn cần giới hạn chặt chẽ */
+/* ✅ Đã xóa .settings-page khỏi danh sách bạn nhé */
 .profile-page, 
 .history-page, 
 .admin-content, 
@@ -92,7 +92,7 @@ header, .admin-header {
   border: none !important;
 }
 
-/* Các Card nội dung: Không viền, chỉ dùng Shadow cho sang Duy nhé */
+/* Các Card nội dung: Không viền, chỉ dùng Shadow cho sang bạn nhé */
 .section-card, .table-container, .card, .stat-card {
   background-color: var(--code-bg) !important;
   border: none !important;

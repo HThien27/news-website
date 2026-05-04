@@ -7,20 +7,20 @@ import ArticleSidebar from "../../components/ArticleSidebar/ArticleSidebar";
 import CommentSection from "../../components/CommentSection/CommentSection";
 import ArticleAuthor from "../../components/ArticleAuthor/ArticleAuthor";
 import { getArticleById } from "../../services/articleService";
-// Quản lý bài viết đã lưu để đồng bộ với Database PostgreSQL Duy nhé
+// Quản lý bài viết đã lưu để đồng bộ với Database PostgreSQL bạn nhé
 import { useSavedArticles } from "../../contexts/SavedArticlesContext";
 
 export default function ArticleDetail() {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [dynamicComments, setDynamicComments] = useState([]); // State lưu bình luận từ Postgres Duy nhé
+  const [dynamicComments, setDynamicComments] = useState([]); // State lưu bình luận từ Postgres bạn nhé
   const commentSectionRef = useRef(null);
 
-  // Lấy logic từ Context toàn cục Duy nhé
+  // Lấy logic từ Context toàn cục bạn nhé
   const { savedArticleIds, addSavedArticleId, removeSavedArticleId } = useSavedArticles();
   
-  // Kiểm tra trạng thái đã lưu bằng chuỗi ID Duy nhé
+  // Kiểm tra trạng thái đã lưu bằng chuỗi ID bạn nhé
   const isSaved = savedArticleIds.includes(String(id));
 
   // --- 1. LOGIC LẤY BÌNH LUẬN TỪ POSTGRES ---
@@ -30,16 +30,16 @@ export default function ArticleDetail() {
       const data = await res.json();
       setDynamicComments(Array.isArray(data) ? data : []);
     } catch (err) {
-      console.error("Lỗi lấy bình luận từ Database Duy ơi:", err);
+      console.error("Lỗi lấy bình luận từ Database bạn ơi:", err);
       setDynamicComments([]);
     }
   };
 
   // --- 2. LOGIC GỬI BÌNH LUẬN MỚI ---
-  // ✅ CẬP NHẬT: Thêm parentId để hỗ trợ tính năng Trả lời (Reply) Duy nhé
+  // ✅ CẬP NHẬT: Thêm parentId để hỗ trợ tính năng Trả lời (Reply) bạn nhé
   const handlePostComment = async (content, parentId = null) => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (!user) return alert("Duy ơi, phải đăng nhập mới bình luận được nhé!");
+    if (!user) return alert("bạn ơi, phải đăng nhập mới bình luận được nhé!");
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/articles/comments`, {
@@ -51,7 +51,7 @@ export default function ArticleDetail() {
           userName: user.fullname,
           userAvatar: user.avatar,
           content: content,
-          parentId: parentId // Truyền parentId xuống Backend Duy nhé
+          parentId: parentId // Truyền parentId xuống Backend bạn nhé
         })
       });
 
@@ -68,7 +68,7 @@ export default function ArticleDetail() {
     navigator.clipboard.writeText(shareUrl).then(() => {
       alert("Đã sao chép liên kết bài báo thành công!");
     }).catch(() => {
-      alert("Không thể sao chép liên kết Duy ơi.");
+      alert("Không thể sao chép liên kết bạn ơi.");
     });
   };
 
@@ -105,12 +105,12 @@ export default function ArticleDetail() {
       })
       .finally(() => setLoading(false));
 
-    // Load bình luận từ Postgres Duy nhé
+    // Load bình luận từ Postgres bạn nhé
     fetchComments();
   }, [id]);
 
-  if (loading) return <div className="ad-loading">Đang tải bài viết xịn cho Duy...</div>;
-  if (!article) return <div className="ad-loading">Không tìm thấy bài viết này rồi Duy ơi!</div>;
+  if (loading) return <div className="ad-loading">Đang tải bài viết xịn cho bạn...</div>;
+  if (!article) return <div className="ad-loading">Không tìm thấy bài viết này rồi bạn ơi!</div>;
 
   return (
     <>
@@ -173,7 +173,7 @@ export default function ArticleDetail() {
 
             <ArticleAuthor author={article.author} />
 
-            {/* ✅ CẬP NHẬT: Truyền thêm fetchComments để CommentSection có thể gọi lại data Duy nhé */}
+            {/* ✅ CẬP NHẬT: Truyền thêm fetchComments để CommentSection có thể gọi lại data bạn nhé */}
             <div ref={commentSectionRef} style={{ marginTop: '40px' }}>
               <CommentSection 
                 comments={dynamicComments} 

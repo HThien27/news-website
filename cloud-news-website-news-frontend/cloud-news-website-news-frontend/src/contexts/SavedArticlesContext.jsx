@@ -5,7 +5,7 @@ const SavedArticlesContext = createContext();
 export const useSavedArticles = () => useContext(SavedArticlesContext);
 
 export const SavedArticlesProvider = ({ children }) => {
-  // 1. Khởi tạo mảng rỗng, không lấy từ localStorage để tránh lẫn lộn User Duy nhé
+  // 1. Khởi tạo mảng rỗng, không lấy từ localStorage để tránh lẫn lộn User bạn nhé
   const [savedArticleIds, setSavedArticleIds] = useState([]);
 
   const user = JSON.parse(localStorage.getItem("user"));
@@ -19,7 +19,7 @@ export const SavedArticlesProvider = ({ children }) => {
   };
   const BASE_URL = getBaseURL();
 
-  // ✅ HÀM MỚI: Lấy danh sách ID đã lưu từ PostgreSQL về để hiển thị icon đỏ Duy nhé
+  // ✅ HÀM MỚI: Lấy danh sách ID đã lưu từ PostgreSQL về để hiển thị icon đỏ bạn nhé
   const fetchSavedIds = async () => {
     if (!userEmail) {
       setSavedArticleIds([]); // Nếu không có user thì xóa sạch ID hiển thị
@@ -42,7 +42,7 @@ export const SavedArticlesProvider = ({ children }) => {
     }
   };
 
-  // ✅ Tự động gọi đồng bộ khi Duy đổi tài khoản hoặc F5 trang web
+  // ✅ Tự động gọi đồng bộ khi bạn đổi tài khoản hoặc F5 trang web
   useEffect(() => {
     fetchSavedIds();
   }, [userEmail]);
@@ -52,7 +52,7 @@ export const SavedArticlesProvider = ({ children }) => {
     const stringId = String(article.id);
     
     if (!savedArticleIds.includes(stringId)) {
-      // Optimistic UI: Cập nhật giao diện trước cho Duy thấy mượt nhé
+      // Optimistic UI: Cập nhật giao diện trước cho bạn thấy mượt nhé
       setSavedArticleIds((prev) => [...prev, stringId]);
 
       if (userEmail) {
@@ -64,7 +64,7 @@ export const SavedArticlesProvider = ({ children }) => {
           });
         } catch (error) {
           console.error("❌ Lỗi gọi API lưu bài:", error);
-          // Nếu lỗi thì xóa ID vừa thêm để giao diện khớp với DB Duy nhé
+          // Nếu lỗi thì xóa ID vừa thêm để giao diện khớp với DB bạn nhé
           setSavedArticleIds((prev) => prev.filter(id => id !== stringId));
         }
       }
@@ -83,7 +83,7 @@ export const SavedArticlesProvider = ({ children }) => {
         });
       } catch (error) {
         console.error("❌ Lỗi gọi API xóa bài:", error);
-        // Nếu lỗi thì thêm lại ID vào giao diện Duy nhé
+        // Nếu lỗi thì thêm lại ID vào giao diện bạn nhé
         setSavedArticleIds((prev) => [...prev, stringId]);
       }
     }
@@ -100,7 +100,7 @@ export const SavedArticlesProvider = ({ children }) => {
       savedArticleIds, 
       addSavedArticleId, 
       removeSavedArticleId,
-      clearSavedArticles // Truyền cái này sang Navbar để dùng Duy nhé
+      clearSavedArticles // Truyền cái này sang Navbar để dùng bạn nhé
     }}>
       {children}
     </SavedArticlesContext.Provider>
