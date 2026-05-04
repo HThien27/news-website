@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Parser = require('rss-parser');
+const axios = require('axios');
+const cheerio = require('cheerio');
 const mongoose = require('mongoose');
 const { Pool } = require('pg');
 const path = require('path');
@@ -377,8 +379,14 @@ app.get('/api/articles/:id/comments', async (req, res) => {
   }
 });
 
+const articleCache = {}; // In-memory cache để tăng tốc độ load
+
 app.get('/api/articles/:id', async (req, res) => {
   try {
+    if (articleCache[req.params.id]) {
+      return res.json(articleCache[req.params.id]); // Trả về ngay nếu đã có trong cache
+    }
+
     const [f1, f2] = await Promise.all([
       parser.parseURL(RSS_URLS['Tất cả']).catch(() => ({ items: [] })),
       parser.parseURL(RSS_URLS['Nổi bật']).catch(() => ({ items: [] }))
@@ -386,12 +394,42 @@ app.get('/api/articles/:id', async (req, res) => {
     const allItems = [...f1.items, ...f2.items];
     const item = allItems.find(i => Buffer.from(i.title).toString('hex').substring(0, 12) === req.params.id);
     if (!item) return res.status(404).json({ message: "Không tìm thấy!" });
-    res.json({
+
+    // CÀO NỘI DUNG VỚI CHEERIO (Trực tiếp từ web gốc)
+    let contentParagraphs = [{ type: "paragraph", text: item.contentSnippet }];
+    try {
+      if (item.link) {
+        const response = await axios.get(item.link, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' }
+        });
+        const $ = cheerio.load(response.data);
+        const paragraphs = [];
+        
+        // Quét các thẻ p.Normal trong khu vực bài báo
+        $('article.fck_detail p.Normal').each((i, el) => {
+          paragraphs.push({ type: "paragraph", text: $(el).text().trim() });
+        });
+
+        // Chỉ thay thế nếu cào được chữ thật
+        if (paragraphs.length > 0) {
+          contentParagraphs = paragraphs;
+        }
+      }
+    } catch (scrapeError) {
+      console.error("Lỗi cào nội dung:", scrapeError.message);
+    }
+
+    const responseData = {
       id: req.params.id, title: item.title, subtitle: item.contentSnippet, heroImage: extractImage(item.content),
-      content: [{ type: "paragraph", text: item.contentSnippet }],
+      content: contentParagraphs,
       author: { name: item.creator || "Ban biên tập VnExpress", avatar: "https://s1.vnecdn.net/vnexpress/restruct/i/v9530/v2_2019/pc/graphics/logo.svg" },
       created_at: item.isoDate
-    });
+    };
+    
+    // Lưu vào cache để lần sau mở không cần cào lại
+    articleCache[req.params.id] = responseData;
+    
+    res.json(responseData);
   } catch (error) { res.status(500).json({ message: "Lỗi chi tiết bài báo bạn nhé!" }); }
 });
 
